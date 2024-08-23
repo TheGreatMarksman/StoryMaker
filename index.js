@@ -9,6 +9,7 @@ app.get('/', (req, res) => {
 });
 */
 
+// Uses css and html files
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
   });
