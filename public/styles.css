@@ -64,11 +64,11 @@ html {
 
 .square{
   position: absolute;
-  width: 10%;
-  padding-top: 10%;
-  left: 0px;
-  top: 0px;
+  width: 20vh;
+  height: 20vh;
   background-color: red;
   z-index: -1;
   cursor: move;
+  resize: both;
+  overflow: auto;
 }
