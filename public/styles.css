@@ -52,17 +52,17 @@ html {
 
 #gallerySquare{
   position: relative;
-  width: 75%;
-  padding-top: 75%;
-  top: 10px;
+  width: 60%;
+  padding-top: 60%;
+  top: 10%;
   margin: 0 auto;
   background-color: red;
 }
 
 .square{
   position: absolute;
-  width: 50px;
-  padding-top: 50px;
+  width: 10%;
+  padding-top: 10%;
   left: 0px;
   top: 0px;
   background-color: red;

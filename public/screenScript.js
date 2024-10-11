@@ -6,6 +6,8 @@ const gameScreen = document.getElementById('inner-rectangle');
 var objectGalleryIsDisplayed = false;
 var objectSelected = null;
 
+
+
 showButton.addEventListener('click', () => {
     if(objectGalleryIsDisplayed){
         objectGallery.style.display = 'none';
@@ -22,12 +24,14 @@ showButton.addEventListener('click', () => {
 gallerySquare.addEventListener('mousedown', (e) => {
     e.preventDefault(); // Prevent default behavior (e.g., text selection)
     
-    document.addEventListener('mouseup', (e) => {
-        const newElement = document.createElement('div');
-        newElement.classList.add('square');
-        newElement.style.left = e.clientX - gameScreen.getBoundingClientRect().left + 'px';
-        newElement.style.top = e.clientY - gameScreen.getBoundingClientRect().top + 'px';
-        gameScreen.appendChild(newElement);
-    });
+    document.addEventListener('mouseup', placeRect);
 });
 
+function placeRect(mouse){
+    const newElement = document.createElement('div');
+    newElement.classList.add('square');
+    newElement.style.left = mouse.clientX - gameScreen.getBoundingClientRect().left + 'px';
+    newElement.style.top = mouse.clientY - gameScreen.getBoundingClientRect().top + 'px';
+    gameScreen.appendChild(newElement);
+    document.removeEventListener('mouseup', placeRect);
+}
