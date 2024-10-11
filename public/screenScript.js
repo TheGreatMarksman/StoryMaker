@@ -1,7 +1,7 @@
 const objectGallery = document.getElementById('objectGallery');
 const showButton = document.getElementById('plus-button');
 const gallerySquare = document.getElementById('gallerySquare');
-const gameScreen = document.getElementById('inner-rectangle');
+const gameScreen = document.getElementById('pageScreen');
 
 var objectGalleryIsDisplayed = false;
 var objectSelected = null;
@@ -9,6 +9,7 @@ var objectSelected = null;
 
 
 showButton.addEventListener('click', () => {
+    //console.log("gallerysquare: " + gallerySquare.style.zIndex);
     if(objectGalleryIsDisplayed){
         objectGallery.style.display = 'none';
         objectGalleryIsDisplayed = false;

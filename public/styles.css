@@ -19,11 +19,12 @@ html {
   align-items: center;
 }
 
-#inner-rectangle {
+#pageScreen {
   width: 90%;
   height: 90%;
   background-color: white;
   border: 5px solid darkblue;
+  z-index: 1;
 }
 
 #plus-button {
@@ -48,6 +49,7 @@ html {
   width: 20%;
   height: 100%;
   background-color: blue;
+  /*z-index: 1;*/
 }
 
 #gallerySquare{
@@ -57,6 +59,7 @@ html {
   top: 10%;
   margin: 0 auto;
   background-color: red;
+  /*z-index: 1;*/
 }
 
 .square{
@@ -66,5 +69,6 @@ html {
   left: 0px;
   top: 0px;
   background-color: red;
+  z-index: -1;
   cursor: move;
 }
