@@ -5,8 +5,11 @@ const gameScreen = document.getElementById('pageScreen');
 
 var objectGalleryIsDisplayed = false;
 var objectSelected = null;
+
 var initialWidth;
 var initialHeight;
+var initialX;
+var initialY;
 
 
 showButton.addEventListener('click', () => {
@@ -61,50 +64,58 @@ function addResizability(element) {
         edges: { left: true, right: true, top: true, bottom: true },
         listeners: {
             start(event) {
-                /*
-                const { dx, dy } = event;
-                initialWidth = dx;
-                initialHeight = dy;
-                */
                 const { rect } = event;
-                initialWidth = event.rect.width;
-                initialHeight = event.rect.height;
-                
+                initialWidth = rect.width;
+                initialHeight = rect.height;
             },
             move(event) {
-                /*
-                const { dx, dy } = event;
-                const newWidth = initialWidth + (dx - initialWidth);
-                const newHeight = initialHeight + (dy - initialHeight);
-                element.style.width = newWidth + 'px';
-                element.style.height = newHeight + 'px';
-                */
+                const { rect, deltaRect} = event;
+                const newWidth = rect.width;
+                const newHeight = rect.height;
+
+                const newX = parseFloat(element.getAttribute('data-x') || 0) + deltaRect.left;
+                const newY = parseFloat(element.getAttribute('data-y') || 0) + deltaRect.top;
+
+                element.style.width = `${newWidth}px`;
+                element.style.height = `${newHeight}px`;
+                //console.log("before: " + element.style.left);
+                element.style.transform = `translate(${newX}px, ${newY}px)`;
+                //console.log("after: " + element.style.left);
                 
-                const { rect } = event;
-                const newWidth = initialWidth + (rect.width - initialWidth);
-                const newHeight = initialHeight + (rect.height - initialHeight);
-                element.style.width = newWidth + 'px';
-                element.style.height = newHeight + 'px';
-                
+                element.setAttribute('data-x', newX);
+                element.setAttribute('data-y', newY);
             },
         },
     });
-}
-
-/*
-interact().draggable({
-    listeners: {
-        move(event) {
-            const { dx, dy } = event;
-            const newX = parseFloat(resizableDiv.getAttribute('data-x') || 0) + dx;
-            const newY = parseFloat(resizableDiv.getAttribute('data-y') || 0) + dy;
-
-            resizableDiv.style.transform = `translate(${newX}px, ${newY}px)`;
-            resizableDiv.setAttribute('data-x', newX);
-            resizableDiv.setAttribute('data-y', newY);
-        },
-    },
-    }).resizable({
+    /*
+    resizeInstance.resizable({
         edges: { left: true, right: true, top: true, bottom: true },
-});
-*/
+        listeners: {
+            start(event) {
+                const { rect } = event;
+                initialWidth = rect.width;
+                initialHeight = rect.height;
+                initialX = parseFloat(element.getAttribute('data-x') || 0);
+                initialY = parseFloat(element.getAttribute('data-y') || 0);
+            },
+            move(event) {
+                const { rect, deltaRect} = event;
+                const newWidth = rect.width;
+                const newHeight = rect.height;
+
+                const newX = initialX + deltaRect.left;
+                const newY = initialY + deltaRect.top;
+
+                element.style.width = `${newWidth}px`;
+                element.style.height = `${newHeight}px`;
+                //console.log("before: " + element.style.left);
+                element.style.transform = `translate(${newX}px, ${newY}px)`;
+                //console.log("after: " + element.style.left);
+                
+                element.setAttribute('data-x', newX);
+                element.setAttribute('data-y', newY);
+            },
+        },
+    });
+    */
+}
