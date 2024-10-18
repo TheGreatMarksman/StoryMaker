@@ -1,3 +1,6 @@
+const SQUARE_WIDTH = Math.floor(20 * window.innerWidth / 100);
+const SQUARE_HEIGHT = Math.floor(20 * window.innerHeight / 100);
+
 const objectGallery = document.getElementById('objectGallery');
 const showButton = document.getElementById('plus-button');
 const gallerySquare = document.getElementById('gallerySquare');
@@ -37,8 +40,8 @@ function placeRect(mouse) {
     newElement.classList.add('square');
     let left = mouse.clientX - gameScreen.getBoundingClientRect().left;
     let top = mouse.clientY - gameScreen.getBoundingClientRect().top;
-    let right = left + gameScreen.getBoundingClientRect().width;
-    let bottom = top + gameScreen.getBoundingClientRect().height;
+    let right = left + SQUARE_WIDTH;
+    let bottom = top + SQUARE_HEIGHT;
 
     console.log("left " + left);
     console.log("top " + top);
@@ -48,17 +51,28 @@ function placeRect(mouse) {
     console.log("topside " + gameScreen.offsetTop);
     console.log("screen width " + gameScreen.getBoundingClientRect().width);
     console.log("screen height " + gameScreen.getBoundingClientRect().height);
-
+    console.log("square width " + SQUARE_WIDTH);
+    console.log("square height " + SQUARE_HEIGHT);
 
     let leftBoundary = gameScreen.offsetLeft;
     let topBoundary = gameScreen.offsetTop;
     let rightBoundary = leftBoundary + gameScreen.offsetWidth;
     let bottomBoundary = topBoundary + gameScreen.offsetHeight;
     
-    if(left < leftBoundary) left = leftBoundary;
-    if(top < topBoundary) top = topBoundary;
-    if(right > rightBoundary) left = rightBoundary - gameScreen.offsetWidth;
-    if(bottom > bottomBoundary) top = bottomBoundary - gameScreen.offsetHeight;
+    if(left < leftBoundary){
+        left = leftBoundary;
+    }
+    if(top < topBoundary){
+        top = topBoundary;
+    }
+    if(right > rightBoundary){
+        console.log("right adjusted");
+        left = rightBoundary - SQUARE_WIDTH;
+    }
+    if(bottom > bottomBoundary){
+        console.log("bottom adjusted");
+        top = bottomBoundary - SQUARE_HEIGHT;
+    }
 
     newElement.style.left = Math.floor(left) + 'px';
     newElement.style.top = Math.floor(top) + 'px';
