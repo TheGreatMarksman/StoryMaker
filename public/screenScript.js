@@ -1,5 +1,4 @@
-const SQUARE_WIDTH = Math.floor(20 * window.innerWidth / 100);
-const SQUARE_HEIGHT = Math.floor(20 * window.innerHeight / 100);
+const SQUARE_LENGTH = Math.floor(20 * window.innerHeight / 100);
 
 const objectGallery = document.getElementById('objectGallery');
 const showButton = document.getElementById('plus-button');
@@ -38,21 +37,22 @@ gallerySquare.addEventListener('mousedown', (e) => {
 function placeRect(mouse) {
     const newElement = document.createElement('div');
     newElement.classList.add('square');
-    let left = mouse.clientX - gameScreen.getBoundingClientRect().left;
-    let top = mouse.clientY - gameScreen.getBoundingClientRect().top;
-    let right = left + SQUARE_WIDTH;
-    let bottom = top + SQUARE_HEIGHT;
+    let left = mouse.clientX - gameScreen.offsetLeft;
+    let top = mouse.clientY - gameScreen.offsetTop;
+    let right = left + SQUARE_LENGTH;
+    let bottom = top + SQUARE_LENGTH;
 
+    /*
     console.log("left " + left);
     console.log("top " + top);
     console.log("right " + right);
     console.log("bottom " + bottom);
     console.log("leftside " + gameScreen.offsetLeft);
     console.log("topside " + gameScreen.offsetTop);
-    console.log("screen width " + gameScreen.getBoundingClientRect().width);
-    console.log("screen height " + gameScreen.getBoundingClientRect().height);
-    console.log("square width " + SQUARE_WIDTH);
-    console.log("square height " + SQUARE_HEIGHT);
+    console.log("screen width " + gameScreen.offsetWidth);
+    console.log("screen height " + gameScreen.offsetHeight);
+    console.log("square width " + SQUARE_LENGTH);
+    */
 
     let leftBoundary = gameScreen.offsetLeft;
     let topBoundary = gameScreen.offsetTop;
@@ -66,12 +66,10 @@ function placeRect(mouse) {
         top = topBoundary;
     }
     if(right > rightBoundary){
-        console.log("right adjusted");
-        left = rightBoundary - SQUARE_WIDTH;
+        left = rightBoundary - SQUARE_LENGTH;
     }
     if(bottom > bottomBoundary){
-        console.log("bottom adjusted");
-        top = bottomBoundary - SQUARE_HEIGHT;
+        top = bottomBoundary - SQUARE_LENGTH;
     }
 
     newElement.style.left = Math.floor(left) + 'px';
