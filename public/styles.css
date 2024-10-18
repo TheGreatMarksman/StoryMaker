@@ -7,7 +7,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: darkblue;
 }
 
 #container {
@@ -17,23 +17,25 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 #pageScreen {
   width: 90%;
   height: 90%;
   background-color: white;
-  border: 5px solid darkblue;
+  border: 10px solid black;
   z-index: 1;
+  overflow: hidden;
 }
 
 #plus-button {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 30px;
+  left: 60px;
   width: 40px;
   height: 40px;
-  background-color: darkblue;
+  background-color: rgb(1, 7, 200);
   color: white;
   border: none;
   border-radius: 50%;
