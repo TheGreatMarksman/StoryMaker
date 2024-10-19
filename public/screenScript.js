@@ -42,8 +42,12 @@ function placeRect(mouse) {
     let right = left + SQUARE_LENGTH;
     let bottom = top + SQUARE_LENGTH;
 
-    /*
+    ///*
     console.log("left " + left);
+    console.log("mouseX " + mouse.clientX);
+    console.log("leftside " + gameScreen.offsetLeft);
+
+    /*
     console.log("top " + top);
     console.log("right " + right);
     console.log("bottom " + bottom);
