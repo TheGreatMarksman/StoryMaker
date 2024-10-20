@@ -102,9 +102,18 @@ function addResizability(element) {
             },
             move(event) {
                 const { rect, deltaRect } = event;
-                let newWidth = rect.width;
-                let newHeight = rect.height;
-
+                /*
+                console.log("width " + rect.width);
+                console.log("height " + rect.height);
+                console.log("game width " + gameScreen.offsetWidth);
+                console.log("game height " + gameScreen.offsetHeight);
+                */
+                let newWidth = Math.min(rect.width, gameScreen.offsetWidth);
+                let newHeight = Math.min(rect.height, gameScreen.offsetHeight);
+                /*
+                console.log("new width " + newWidth);
+                console.log("new height " + newHeight);
+                */
                 let newX = (parseFloat(window.getComputedStyle(element).left) || 0) + deltaRect.left;
                 let newY = (parseFloat(window.getComputedStyle(element).top) || 0) + deltaRect.top;
 
