@@ -39,15 +39,11 @@ function placeRect(mouse) {
     newElement.classList.add('square');
     let left = mouse.clientX - gameScreen.offsetLeft;
     let top = mouse.clientY - gameScreen.offsetTop;
-    let right = left + SQUARE_LENGTH;
-    let bottom = top + SQUARE_LENGTH;
 
-    ///*
+    /*
     console.log("left " + left);
     console.log("mouseX " + mouse.clientX);
     console.log("leftside " + gameScreen.offsetLeft);
-
-    /*
     console.log("top " + top);
     console.log("right " + right);
     console.log("bottom " + bottom);
@@ -58,26 +54,12 @@ function placeRect(mouse) {
     console.log("square width " + SQUARE_LENGTH);
     */
 
-    let leftBoundary = gameScreen.offsetLeft;
-    let topBoundary = gameScreen.offsetTop;
-    let rightBoundary = leftBoundary + gameScreen.offsetWidth;
-    let bottomBoundary = topBoundary + gameScreen.offsetHeight;
-    
-    if(left < leftBoundary){
-        left = leftBoundary;
-    }
-    if(top < topBoundary){
-        top = topBoundary;
-    }
-    if(right > rightBoundary){
-        left = rightBoundary - SQUARE_LENGTH;
-    }
-    if(bottom > bottomBoundary){
-        top = bottomBoundary - SQUARE_LENGTH;
-    }
+    let correctedCoordinates = boundaryFitXY(newElement, left, top);
+    left = correctedCoordinates.left;
+    top = correctedCoordinates.top;
 
-    newElement.style.left = Math.floor(left) + 'px';
-    newElement.style.top = Math.floor(top) + 'px';
+    newElement.style.left = left + 'px';
+    newElement.style.top = top + 'px';
 
     addResizability(newElement);
 
@@ -91,12 +73,22 @@ function addResizability(element) {
         listeners: {
             move(event) {
                 const { dx, dy } = event;
-                const newX = parseFloat(element.getAttribute('data-x') || 0) + dx;
-                const newY = parseFloat(element.getAttribute('data-y') || 0) + dy;
 
-                element.style.transform = `translate(${newX}px, ${newY}px)`;
-                element.setAttribute('data-x', newX);
-                element.setAttribute('data-y', newY);
+                // Get the current positions from style.left and style.top
+                let currentX = parseFloat(window.getComputedStyle(element).left) || 0;
+                let currentY = parseFloat(window.getComputedStyle(element).top) || 0;
+
+                // Calculate new positions
+                let newX = currentX + dx;
+                let newY = currentY + dy;
+
+                let correctedCoordinates = boundaryFitXY(element, newX, newY);
+                newX = correctedCoordinates.left;
+                newY = correctedCoordinates.top;
+
+                // Update the element's position
+                element.style.left = newX + 'px';
+                element.style.top = newY + 'px';
             },
         },
     });
@@ -109,23 +101,50 @@ function addResizability(element) {
                 initialHeight = rect.height;
             },
             move(event) {
-                const { rect, deltaRect} = event;
-                const newWidth = rect.width;
-                const newHeight = rect.height;
+                const { rect, deltaRect } = event;
+                let newWidth = rect.width;
+                let newHeight = rect.height;
 
-                const newX = parseFloat(element.getAttribute('data-x') || 0) + deltaRect.left;
-                const newY = parseFloat(element.getAttribute('data-y') || 0) + deltaRect.top;
+                let newX = (parseFloat(window.getComputedStyle(element).left) || 0) + deltaRect.left;
+                let newY = (parseFloat(window.getComputedStyle(element).top) || 0) + deltaRect.top;
 
-                element.style.width = `${newWidth}px`;
-                element.style.height = `${newHeight}px`;
-                //console.log("before: " + element.style.left);
-                element.style.transform = `translate(${newX}px, ${newY}px)`;
-                //console.log("after: " + element.style.left);
+                let correctedCoordinates = boundaryFitXY(element, newX, newY);
+                newX = correctedCoordinates.left;
+                newY = correctedCoordinates.top;
+
+                element.style.width = newWidth + 'px';
+                element.style.height = newHeight + 'px';
                 
-                element.setAttribute('data-x', newX);
-                element.setAttribute('data-y', newY);
+                element.style.left = newX + 'px';
+                element.style.top = newY + 'px';
             },
         },
     });
-    
+}
+
+function boundaryFitXY(element, left, top) {
+    let width = parseFloat(window.getComputedStyle(element).width) || 0;
+    let height = parseFloat(window.getComputedStyle(element).height) || 0
+    let right = left + width;
+    let bottom = top + height;
+
+    let leftBoundary = gameScreen.offsetLeft;
+    let topBoundary = gameScreen.offsetTop;
+    let rightBoundary = leftBoundary + gameScreen.offsetWidth;
+    let bottomBoundary = topBoundary + gameScreen.offsetHeight;
+
+    if (left < leftBoundary) {
+        left = leftBoundary;
+    }
+    if (top < topBoundary) {
+        top = topBoundary;
+    }
+    if (right > rightBoundary) {
+        left = rightBoundary - width;
+    }
+    if (bottom > bottomBoundary) {
+        top = bottomBoundary - height;
+    }
+
+    return { left, top };
 }
