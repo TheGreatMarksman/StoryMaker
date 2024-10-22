@@ -36,7 +36,9 @@ gallerySquare.addEventListener('mousedown', (e) => {
 
 function placeRect(mouse) {
     const newElement = document.createElement('div');
-    newElement.classList.add('square');
+    newElement.classList.add('hippo');
+    newElement.src = "images/HIPPO.png";
+    newElement.alt = "HIPPO";
     let left = mouse.clientX - gameScreen.offsetLeft;
     let top = mouse.clientY - gameScreen.offsetTop;
 

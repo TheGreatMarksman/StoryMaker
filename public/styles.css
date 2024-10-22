@@ -32,15 +32,15 @@ html {
 
 #plus-button {
   position: absolute;
-  bottom: 30px;
-  left: 60px;
-  width: 40px;
-  height: 40px;
+  bottom: 5vh;
+  left: 5vw;
+  width: 10vh;
+  height: 10vh;
   background-color: rgb(1, 7, 200);
   color: white;
   border: none;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 5vh;
   cursor: pointer;
 }
 
@@ -70,6 +70,16 @@ html {
   width: 20vh;
   height: 20vh;
   background-color: red;
+  z-index: -1;
+  cursor: move;
+  resize: both;
+  overflow: auto;
+}
+
+.hippo{
+  position: absolute;
+  width: 20vh;
+  height: 20vh;
   z-index: -1;
   cursor: move;
   resize: both;
