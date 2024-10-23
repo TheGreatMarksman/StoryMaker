@@ -2,7 +2,9 @@ const SQUARE_LENGTH = Math.floor(20 * window.innerHeight / 100);
 
 const objectGallery = document.getElementById('objectGallery');
 const showButton = document.getElementById('plus-button');
-const gallerySquare = document.getElementById('gallerySquare');
+//const gallerySquare = document.getElementById('gallerySquare');
+const galleryHippo = document.getElementById('galleryHippo');
+
 const gameScreen = document.getElementById('pageScreen');
 
 var objectGalleryIsDisplayed = false;
@@ -27,7 +29,7 @@ showButton.addEventListener('click', () => {
     }
 });
 
-gallerySquare.addEventListener('mousedown', (e) => {
+galleryHippo.addEventListener('mousedown', (e) => {
     e.preventDefault(); // Prevent default behavior (e.g., text selection)
 
     document.addEventListener('mouseup', placeRect);
@@ -35,7 +37,7 @@ gallerySquare.addEventListener('mousedown', (e) => {
 
 
 function placeRect(mouse) {
-    const newElement = document.createElement('div');
+    const newElement = document.createElement("img");
     newElement.classList.add('hippo');
     newElement.src = "images/HIPPO.png";
     newElement.alt = "HIPPO";
