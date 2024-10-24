@@ -66,8 +66,7 @@ html {
 
 #galleryHippo{
   position: relative;
-  width: 60%;
-  padding-top: 60%;
+  width: 100%;
   top: 10%;
   margin: 0 auto;
   /*z-index: 1;*/
