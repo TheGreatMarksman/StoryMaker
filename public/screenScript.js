@@ -41,6 +41,8 @@ function placeRect(mouse) {
     newElement.classList.add('hippo');
     newElement.src = "images/HIPPO.png";
     newElement.alt = "HIPPO";
+    gameScreen.appendChild(newElement);
+
     let left = mouse.clientX - gameScreen.offsetLeft;
     let top = mouse.clientY - gameScreen.offsetTop;
 
@@ -67,7 +69,6 @@ function placeRect(mouse) {
 
     addResizability(newElement);
 
-    gameScreen.appendChild(newElement);
     document.removeEventListener('mouseup', placeRect);
 }
 
@@ -79,8 +80,8 @@ function addResizability(element) {
                 const { dx, dy } = event;
 
                 // Get the current positions from style.left and style.top
-                let currentX = parseFloat(window.getComputedStyle(element).left) || 0;
-                let currentY = parseFloat(window.getComputedStyle(element).top) || 0;
+                let currentX = Math.floor(parseFloat(window.getComputedStyle(element).left) || 0);
+                let currentY = Math.floor(parseFloat(window.getComputedStyle(element).top) || 0);
 
                 // Calculate new positions
                 let newX = currentX + dx;
@@ -118,8 +119,8 @@ function addResizability(element) {
                 console.log("new width " + newWidth);
                 console.log("new height " + newHeight);
                 */
-                let newX = (parseFloat(window.getComputedStyle(element).left) || 0) + deltaRect.left;
-                let newY = (parseFloat(window.getComputedStyle(element).top) || 0) + deltaRect.top;
+                let newX = Math.floor((parseFloat(window.getComputedStyle(element).left) || 0) + deltaRect.left);
+                let newY = Math.floor((parseFloat(window.getComputedStyle(element).top) || 0) + deltaRect.top);
 
                 let correctedCoordinates = boundaryFitXY(element, newX, newY);
                 newX = correctedCoordinates.left;
@@ -136,8 +137,9 @@ function addResizability(element) {
 }
 
 function boundaryFitXY(element, left, top) {
-    let width = parseFloat(window.getComputedStyle(element).width) || 0;
-    let height = parseFloat(window.getComputedStyle(element).height) || 0
+    let width = Math.floor(parseFloat(window.getComputedStyle(element).width) || 0);
+    let height = Math.floor(parseFloat(window.getComputedStyle(element).height) || 0);
+    
     let right = left + width;
     let bottom = top + height;
 

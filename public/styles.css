@@ -30,6 +30,14 @@ html {
   overflow: hidden;
 }
 
+#textBlock{
+  position: relative;
+  width: 100%;
+  height: 30%;
+  top: 70%;
+  background-color: aliceblue;
+}
+
 #plus-button {
   position: absolute;
   bottom: 5vh;
@@ -42,6 +50,7 @@ html {
   border-radius: 50%;
   font-size: 5vh;
   cursor: pointer;
+  z-index: 1;
 }
 
 #plus-button:hover {
@@ -91,4 +100,5 @@ html {
   cursor: move;
   resize: both;
   overflow: auto;
+  transform: scaleX(1);
 }
