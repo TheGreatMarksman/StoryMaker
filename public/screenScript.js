@@ -5,7 +5,7 @@ const showButton = document.getElementById('plus-button');
 //const gallerySquare = document.getElementById('gallerySquare');
 const galleryHippo = document.getElementById('galleryHippo');
 
-const gameScreen = document.getElementById('pageScreen');
+const gameScreen = document.getElementById('imageBlock');
 
 var objectGalleryIsDisplayed = false;
 var objectSelected = null;
@@ -43,8 +43,8 @@ function placeRect(mouse) {
     newElement.alt = "HIPPO";
     gameScreen.appendChild(newElement);
 
-    let left = mouse.clientX - gameScreen.offsetLeft;
-    let top = mouse.clientY - gameScreen.offsetTop;
+    let left = mouse.clientX - gameScreen.offsetLeft - newElement.offsetWidth/2;
+    let top = mouse.clientY - gameScreen.offsetTop - newElement.offsetHeight/2;
 
     /*
     console.log("left " + left);
