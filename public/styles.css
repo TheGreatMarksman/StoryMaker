@@ -46,14 +46,7 @@ html {
   top: 0%;
   background-color: aliceblue;
   font-size: 5vh;
-
-  /*
-  position: absolute;
-  width: 90%;
-  height: 30%;
-  top: 70%;
-  background-color: aliceblue;
-  */
+  text-align: center;
 }
 
 #plus-button {

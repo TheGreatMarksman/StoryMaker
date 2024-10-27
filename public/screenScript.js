@@ -43,8 +43,8 @@ function placeRect(mouse) {
     newElement.alt = "HIPPO";
     gameScreen.appendChild(newElement);
 
-    let left = mouse.clientX - gameScreen.offsetLeft - newElement.offsetWidth/2;
-    let top = mouse.clientY - gameScreen.offsetTop - newElement.offsetHeight/2;
+    let left = mouse.clientX - gameScreen.offsetLeft - newElement.offsetWidth / 2;
+    let top = mouse.clientY - gameScreen.offsetTop - newElement.offsetHeight / 2;
 
     /*
     console.log("left " + left);
@@ -63,6 +63,11 @@ function placeRect(mouse) {
     let correctedCoordinates = boundaryFitXY(newElement, left, top);
     left = correctedCoordinates.left;
     top = correctedCoordinates.top;
+
+    console.log("left " + left);
+    console.log("top " + top);
+    console.log("gameLeft " + gameScreen.offsetLeft);
+    console.log("gameTop " + gameScreen.offsetTop);
 
     newElement.style.left = left + 'px';
     newElement.style.top = top + 'px';
@@ -128,7 +133,7 @@ function addResizability(element) {
 
                 element.style.width = newWidth + 'px';
                 element.style.height = newHeight + 'px';
-                
+
                 element.style.left = newX + 'px';
                 element.style.top = newY + 'px';
             },
@@ -139,14 +144,14 @@ function addResizability(element) {
 function boundaryFitXY(element, left, top) {
     let width = Math.floor(parseFloat(window.getComputedStyle(element).width) || 0);
     let height = Math.floor(parseFloat(window.getComputedStyle(element).height) || 0);
-    
+
     let right = left + width;
     let bottom = top + height;
-
-    let leftBoundary = gameScreen.offsetLeft;
-    let topBoundary = gameScreen.offsetTop;
-    let rightBoundary = leftBoundary + gameScreen.offsetWidth;
-    let bottomBoundary = topBoundary + gameScreen.offsetHeight;
+    
+    let leftBoundary = 0;
+    let topBoundary = 0;
+    let rightBoundary = gameScreen.clientWidth;
+    let bottomBoundary = gameScreen.clientHeight;
 
     if (left < leftBoundary) {
         left = leftBoundary;
