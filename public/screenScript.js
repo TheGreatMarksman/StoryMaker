@@ -64,11 +64,6 @@ function placeRect(mouse) {
     left = correctedCoordinates.left;
     top = correctedCoordinates.top;
 
-    console.log("left " + left);
-    console.log("top " + top);
-    console.log("gameLeft " + gameScreen.offsetLeft);
-    console.log("gameTop " + gameScreen.offsetTop);
-
     newElement.style.left = left + 'px';
     newElement.style.top = top + 'px';
 
