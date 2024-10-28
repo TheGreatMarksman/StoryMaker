@@ -72,15 +72,40 @@ html {
   background-color: aquamarine;
 }
 
+#background-button {
+  position: absolute;
+  top: 2vh;
+  right: 2vh;
+  width: 10vh;
+  height: 10vh;
+  background-color: darkcyan;
+  /* background-color: rgb(1, 7, 200); */
+  /* background-color: rgb(255, 187, 0); */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 5vh;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#background-button:hover {
+  /* background-color: #000040; */
+  background-color: aquamarine;
+}
+
+
 #objectGallery {
   position: relative;
   width: 20%;
   height: 100%;
   background-color: blue;
   z-index: 1;
-  background: linear-gradient(to right, darkcyan, cyan);
+  /* background: linear-gradient(to right, darkcyan, cyan); */
+  background-color: darkturquoise;
   border: 2px solid #333;
   box-sizing: border-box;
+  border-radius: 0% 20% 20% 0%;
 }
 
 #gallerySquare{
@@ -98,6 +123,10 @@ html {
   top: 10%;
   margin: 0 auto;
   /*z-index: 1;*/
+}
+
+#galleryHippo:hover{
+  top: 8%;
 }
 
 .square{
