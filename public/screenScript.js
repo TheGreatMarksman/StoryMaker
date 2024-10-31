@@ -69,6 +69,12 @@ function placeRect(mouse) {
 
     addResizability(newElement);
 
+    //addDeletability(newElement);
+    const deleteButton = document.createElement('div');
+    deleteButton.classList.add('delete-button');
+    deleteButton.innerHTML = 'x';
+    newElement.appendChild(deleteButton);
+
     document.removeEventListener('mouseup', placeRect);
 }
 
@@ -133,6 +139,17 @@ function addResizability(element) {
                 element.style.top = newY + 'px';
             },
         },
+    });
+}
+
+function addDeletability(element){
+    const deleteButton = document.createElement('div');
+    deleteButton.classList.add('delete-button');
+    deleteButton.innerHTML = 'x';
+    element.appendChild(deleteButton);
+    element.addEventListener('mouseover', () => {
+        console.log("hovzerin");
+        deleteButton.style.display = 'block';
     });
 }
 
